@@ -1,8 +1,7 @@
 <template>
   <div class="hello">
-    <h2 class="no-print">鏤空寫字板</h2>
-    <h3 class="no-print">一次列印四行字來練習</h3>
-    <h1 class="o" v-for="i in [1,2,3,4]" :key="i">
+    <h2 class="no-print">鏤空寫字板(一次列印三行字來練習)</h2>
+    <h1 class="o" v-for="i in [1,2,3]" :key="i">
       <span :class="i > 1 ? 'print-only' : ''">{{ msg }}</span>
     </h1>
     <input class="no-print" v-model = "msg" placeholder="請輸入要印出的大字" />
@@ -36,7 +35,7 @@ export default {
 <style scoped>
 
 .o {
-  font-size: 80px;
+  font-size: 120px;
   font-weight: 900;
   text-stroke: 2px black;
   -webkit-text-stroke: 2px black;
