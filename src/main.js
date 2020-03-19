@@ -8,7 +8,6 @@ import autofocus from 'vue-autofocus-directive'
 
 Vue.directive('autofocus', autofocus)
 
-
 Vue.use(VueGtag, {
   config: { id: 'UA-26178243-15' } // <---change here
 })
