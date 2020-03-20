@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <h2 class="no-print"></h2>
     <h1 class="o" v-for="i in [1,2,3]" :key="i">
       <span :class="i > 1 ? 'print-only' : ''">{{ msg }}</span>
     </h1>
@@ -10,7 +11,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Print',
   data () {
     return {
       msg: ''
@@ -26,6 +27,9 @@ export default {
       })
       window.print()
     }
+  },
+  mounted () {
+    this.msg = this.$route.params.id
   }
 }
 </script>
