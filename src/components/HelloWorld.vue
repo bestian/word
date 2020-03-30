@@ -1,10 +1,24 @@
 <template>
   <div class="hello">
-    <h1 class="o" v-for="i in [1,2,3]" :key="i">
-      <span :class="i > 1 ? 'print-only' : ''">{{ msg }}</span>
+    <h1 class="o" v-for="i in getRange(max)" :key="i">
+      <img v-if="img" :src="img" :style="{'width': ft*6 + 'vw'}">
+      <br/>
+      <span :style="{'font-size' : ft + 'em'}">{{ msg }}</span>
     </h1>
-    <input class="no-print" v-model = "msg" placeholder="請輸入要印出的大字" />
-    <a class = "button3 no-print" @click="pri(msg)">友善列印</a>
+    <form class="no-print">
+      <input class ="normal no-print" v-autofocus v-model = "msg" placeholder="請輸入要印出的字" />
+      <br>
+      行數<input class ="normal no-print"  type="number" v-model = "max" name="max">
+      <br>
+      大小<input class ="normal no-print" type="number" v-model = "ft" name="max">
+      <hr>
+      <input class = "no-print" type="checkbox" v-model = "useImg"> 要配圖嗎?
+      <br/>
+      圖片網址: <input v-show ="useImg" class ="normal no-print" v-autofocus v-model = "img" placeholder="請輸入圖片網址" />
+      <br>
+      <hr>
+      <a class = "button3 no-print" @click="pri(msg)">友善列印</a>
+    </form>
   </div>
 </template>
 
@@ -13,10 +27,21 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: ''
+      msg: '',
+      max: 3,
+      ft: 10,
+      useImg: false,
+      img: ''
     }
   },
   methods: {
+    getRange: function (n) {
+      var ans = []
+      for (var i = 0; i < n; i++) {
+        ans.push(i)
+      }
+      return ans
+    },
     pri: function (t) {
       this.$gtag.event('action', {
         event_category: 'print',
@@ -26,6 +51,11 @@ export default {
       })
       window.print()
     }
+  },
+  watch: {
+    max: function () {
+      this.$forceUpdate()
+    }
   }
 }
 </script>
@@ -34,7 +64,7 @@ export default {
 <style scoped>
 
 .o {
-  font-size: 120px;
+  font-size: 8px;
   font-weight: 900;
   text-stroke: 2px black;
   -webkit-text-stroke: 2px black;
@@ -46,16 +76,21 @@ export default {
   display: none;
 }
 
-input {
+input.normal {
   font-size: 20px;
+  width: 150px;
   border: 2px solid green;
   border-radius: 5px;
-  margin: 1em 0;
+  margin: 0.6em 0.5em;
   padding: .2em;
 }
 
+img {
+  width: 62vw;
+}
+
 @media print {
-  .no-print {
+  .no-print, br, hr {
     visibility: hidden;
   }
   .print-only {
@@ -83,6 +118,16 @@ a.button3 {
 
 a.button3:hover {
   background-color:#4095c6;
+}
+
+form {
+  background-color: white;
+  opacity: 0.86;
+  border-radius: 50px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 1em;
 }
 
 </style>
