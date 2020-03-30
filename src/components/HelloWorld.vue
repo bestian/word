@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1 class="o" v-for="i in getRange(max)" :key="i">
-      <img v-if="img" :src="img" :style="{'width': ft*6 + 'vw'}">
+      <img id = "main" v-if="img" :src="img" :style="{'width': ft*6 + 'vw'}">
       <br/>
       <span :style="{'font-size' : ft + 'em'}">{{ msg }}</span>
     </h1>
@@ -71,11 +71,6 @@ export default {
   color: transparent;
 }
 
-.print-only {
-  visibility: hidden;
-  display: none;
-}
-
 input.normal {
   font-size: 20px;
   width: 150px;
@@ -85,8 +80,13 @@ input.normal {
   padding: .2em;
 }
 
-img {
+img#main {
   width: 62vw;
+}
+
+.print-only {
+  visibility: hidden;
+  display: none;
 }
 
 @media print {
