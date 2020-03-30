@@ -17,6 +17,7 @@
     "vue": "^2.5.2",
     "vue-autofocus-directive": "^1.0.4",
     "vue-gtag": "^1.6.2",
+    "vue-image-upload-resize": "^2.3.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
