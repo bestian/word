@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import VueGtag from 'vue-gtag'
 import autofocus from 'vue-autofocus-directive'
+import ImageUploader from 'vue-image-upload-resize'
+
+Vue.use(ImageUploader)
 
 Vue.directive('autofocus', autofocus)
 
