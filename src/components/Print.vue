@@ -6,7 +6,7 @@
       <span :style="{'font-size' : ft + 'em'}">{{ msg }}</span>
     </h1>
     <form class="no-print">
-      <input class ="normal no-print" v-autofocus v-model = "msg" placeholder="請輸入要印出的字" />
+      <textarea class ="normal no-print" v-autofocus v-model = "msg" placeholder="請輸入要印出的字" />
       <br>
       行數<input class ="normal no-print"  type="number" v-model = "max" name="max">
       <br>
@@ -14,8 +14,28 @@
       <hr>
       <input class = "no-print" type="checkbox" v-model = "useImg"> 要配圖嗎?
       <br/>
-      圖片網址: <input v-show ="useImg" class ="normal no-print" v-autofocus v-model = "img" placeholder="請輸入圖片網址" />
-      <br>
+      <div class="upload-btn-wrapper no-print">
+        <template>
+          <image-uploader
+            :debug="1"
+            :maxWidth="512"
+            :quality="0.7"
+            :autoRotate=true
+            outputFormat="verbose"
+            :preview=false
+            :className="['fileinput', { 'fileinput--loaded' : hasImage }]"
+            capture="environment"
+            accept="image/*"
+            doNotResize="['gif', 'svg']"
+            @input="setImage"
+          ></image-uploader>
+        </template>
+      </div>
+      <div v-show ="useImg">
+        或輸入網址:
+        <br>
+        <input class ="normal no-print" v-model = "img" placeholder="請輸入圖片網址" />
+      </div>
       <hr>
       <a class = "button3 no-print" @click="pri(msg)">友善列印</a>
     </form>
@@ -28,13 +48,18 @@ export default {
   data () {
     return {
       msg: '',
-      max: 3,
+      max: 1,
       ft: 10,
-      useImg: false,
-      img: ''
+      useImg: true,
+      img: '',
+      hasImage: false
     }
   },
   methods: {
+    setImage: function (file) {
+      this.hasImage = true
+      this.img = file.dataUrl
+    },
     getRange: function (n) {
       var ans = []
       for (var i = 0; i < n; i++) {
@@ -131,6 +156,10 @@ form {
   top: 0;
   right: 0;
   padding: 1em;
+}
+
+span {
+  white-space: pre;
 }
 
 </style>

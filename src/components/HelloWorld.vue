@@ -34,7 +34,7 @@
       <div v-show ="useImg">
         或輸入網址:
         <br>
-        <input class ="normal no-print" v-autofocus v-model = "img" placeholder="請輸入圖片網址" />
+        <input class ="normal no-print" v-model = "img" placeholder="請輸入圖片網址" />
       </div>
       <hr>
       <a class = "button3 no-print" @click="pri(msg)">友善列印</a>
