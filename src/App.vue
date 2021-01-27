@@ -25,6 +25,7 @@ export default {
 }
 
 img {
-  filter: invert(100%);
+  filter: invert(100%) grayscale(100%);
+  opacity: .32;
 }
 </style>
