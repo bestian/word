@@ -1,9 +1,7 @@
 <template>
   <div class="hello">
     <h1 class="o" v-for="i in getRange(max)" :key="i">
-      <img id = "main" v-if="img" :src="img" :style="{'width': ft*6 + 'vw'}">
-      <br/>
-      <span :style="{'font-size' : ft + 'em'}">{{ msg }}</span>
+      <img id = "main" :src="'https://www.moedict.tw/' + (msg || ' ') + '.png'" :style="{'width': ft*6 + 'vw', margin: '-' + (ft * 2 + 4 / msg.split('').length) + 'vw 0'}">
     </h1>
     <form class="no-print">
       <textarea class ="normal no-print" v-autofocus v-model = "msg" placeholder="請輸入要印出的字" />
@@ -12,6 +10,7 @@
       <br>
       大小<input class ="normal no-print" type="number" v-model = "ft" name="max">
       <hr>
+      <!--
       <input class = "no-print" type="checkbox" v-model = "useImg"> 要配圖嗎?
       <br/>
       <div class="upload-btn-wrapper no-print">
@@ -37,6 +36,7 @@
         <input class ="normal no-print" v-model = "img" placeholder="請輸入圖片網址" />
       </div>
       <hr>
+    -->
       <a class = "button3 no-print" @click="pri(msg)">友善列印</a>
     </form>
   </div>
@@ -50,7 +50,7 @@ export default {
       msg: '',
       max: 1,
       ft: 10,
-      useImg: true,
+      useImg: false,
       img: '',
       hasImage: false
     }
