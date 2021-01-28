@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1 class="o" v-for="i in getRange(max)" :key="i">
-      <img id = "main" :src="'https://www.moedict.tw/' + (msg || ' ') + '.png'" :style="{'width': ft*6 + 'vw', margin: '-' + (ft * 2 + 4 / msg.split('').length) + 'vw 0'}">
+      <img id = "main" alt="字" :src="'https://www.moedict.tw/' + (msg || ' ') + '.png'" :style="{'width': ft*6 + 'vw', margin: '-' + (ft * 2 + 4 / msg.split('').length) + 'vw 0'}">
     </h1>
     <form class="no-print">
       <textarea class ="normal no-print" v-autofocus v-model = "msg" placeholder="請輸入要印出的字" />
