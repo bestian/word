@@ -1,17 +1,25 @@
 <template>
   <div class="hello">
+    <img v-show="useImg" id="main" alt="圖"
+    :src="img"
+    :style="{'width': (ft * 3) + 'vw',
+      'margin-top':  (ft * -2) + 'px',
+      'margin-bottom':  (ft * 10) + 'px'
+    }">
     <h1 class="o" v-for="i in getRange(max)" :key="i">
-      <img id = "main" alt="字" :src="'https://www.moedict.tw/' + (msg || ' ') + '.png'" :style="{'width': ft*6 + 'vw', margin: '-' + (ft * 2 + 4 / msg.split('').length) + 'vw 0'}">
+      <img v-show="msg" id="main" alt="文字"
+      :src="'https://www.moedict.tw/' + (msg || ' ') + '.png'"
+      :style="{'width': (msg.split('').length == 1 ? ft*3 : ft*6) + 'vw', margin: '-' + (ft * 2 + 4 / msg.split('').length) + 'vw 0'}">
     </h1>
-    <form class="no-print">
-      <textarea class ="normal no-print" v-autofocus v-model = "msg" placeholder="請輸入要印出的字" />
+    <form class="no-print" id = "main-form">
+      <textarea class="normal no-print" v-autofocus v-model="msg" placeholder="請輸入要印出的字" />
       <br>
-      行數<input class ="normal no-print"  type="number" v-model = "max" name="max">
+      行數<input class="normal no-print" type="number" v-model="max" name="max">
       <br>
-      大小<input class ="normal no-print" type="number" v-model = "ft" name="max">
-      <hr>
-      <!--
-      <input class = "no-print" type="checkbox" v-model = "useImg"> 要配圖嗎?
+      大小<input class="normal no-print" type="number" v-model="ft" name="max">
+      <br>
+      <input class="no-print" type="checkbox" v-model="useImg">
+        <label for="useImg">我要配圖</label>
       <br/>
       <div class="upload-btn-wrapper no-print">
         <template>
@@ -30,21 +38,20 @@
           ></image-uploader>
         </template>
       </div>
-      <div v-show ="useImg">
+      <div v-show="useImg">
         或輸入網址:
         <br>
-        <input class ="normal no-print" v-model = "img" placeholder="請輸入圖片網址" />
+        <input class="normal no-print" v-model="img" placeholder="請輸入圖片網址" />
       </div>
       <hr>
-    -->
-      <a class = "button3 no-print" @click="pri(msg)">友善列印</a>
+      <a class="button3 no-print" @click="pri(msg)">友善列印</a>
     </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'CardGenerator',
   data () {
     return {
       msg: '',
@@ -155,8 +162,19 @@ form {
   padding: 1em;
 }
 
+@media screen and (max-width: 600px) {
+  form#main-form {
+    position: relative;
+    top: 20vw;
+  }
+}
+
 span {
   white-space: pre;
+}
+
+textarea, label {
+  font-size: 20px;
 }
 
 </style>
