@@ -9,7 +9,7 @@
     <h1 class="o" v-for="i in getRange(max)" :key="i">
       <img v-show="msg" id="main" alt="文字"
       :src="'https://www.moedict.tw/' + (msg || ' ') + '.png'"
-      :style="{'width': (msg.split('').length == 1 ? ft*3 : ft*6) + 'vw', margin: '-' + (ft * 2 + 4 / msg.split('').length) + 'vw 0'}">
+      :style="{'width': (msg.split('').length == 1 ? ft*3 : ft*6) + 'vw', margin: '-' + (msg.split('').length == 1 ? 2 / msg.split('').length : ft * 1.5 + 2 / msg.split('').length) + 'vw 0'}">
     </h1>
     <form class="no-print" id = "main-form">
       <textarea class="normal no-print" v-autofocus v-model="msg" placeholder="請輸入要印出的字" />
