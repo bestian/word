@@ -1,12 +1,18 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div id="app" :class="appClass">
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    appClass () {
+      // 只有 /A4 不要 margin-top，其它路由維持預設
+      return this.$route.path === '/A4' ? 'no-margin' : 'default-layout'
+    }
+  }
 }
 </script>
 
@@ -22,6 +28,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+/* A4 頁面：貼齊頂端 */
+#app.no-margin {
+  margin-top: 0 !important;
 }
 
 img {
