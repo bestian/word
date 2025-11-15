@@ -74,6 +74,9 @@ export default {
       }
     }
   },
+  mounted () {
+    document.title = 'A4稿紙產生器'
+  },
   methods: {
     printPage () {
       window.print()
