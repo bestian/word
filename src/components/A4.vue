@@ -110,7 +110,6 @@ body {
   margin-left: 8px;
 }
 
-
 .note {
   color: red;
   font-size: 14pt;
